@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ardhynata · Portfolio</title>
+<meta name="description" content="Portfolio of ardhynata: Go products built on Hexago, plus Python, Dart and Kotlin projects.">
+<style>
+:root{--bg:#fafaf9;--fg:#1c1917;--muted:#6b6560;--card:#fff;--line:#e7e5e4;--accent:#0f6b5c;--chip:#f0efed}
+@media (prefers-color-scheme:dark){:root{--bg:#121110;--fg:#f2efec;--muted:#a09a94;--card:#1b1a18;--line:#2c2a27;--accent:#4cc3aa;--chip:#26241f}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+header{padding:64px 0 32px}
+h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.1;margin:0 0 12px;letter-spacing:-.02em}
+header p{max-width:60ch;color:var(--muted);margin:0 0 16px}
+nav a{margin-right:16px;font-size:.95rem}
+h2{font-size:1.4rem;margin:48px 0 4px}
+.sub{color:var(--muted);margin:0 0 20px;font-size:.95rem}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.card .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{margin:0;font-size:1.1rem}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+.tag{background:var(--chip);border-radius:999px;padding:2px 10px;font-size:.78rem;color:var(--muted)}
+.links{font-size:.9rem}
+.shot{background:var(--chip);aspect-ratio:10/7;position:relative}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
+.thumbs{display:flex;gap:6px;padding:8px 16px 0}
+.thumbs button{border:1px solid var(--line);background:var(--chip);border-radius:6px;padding:0;width:56px;height:38px;overflow:hidden;cursor:pointer;opacity:.6}
+.thumbs button[aria-current=true]{opacity:1;outline:2px solid var(--accent)}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.noshot{display:flex;align-items:center;justify-content:center;height:100%;font:600 1.6rem ui-monospace,monospace;color:var(--muted)}
+.priv{font-size:.78rem;color:var(--muted)}
+footer{margin:64px 0 40px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line);padding-top:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>ardhynata</h1>
+  <p>Software projects: Go products built on the Hexago hexagonal-architecture substrate, plus experiments in Python, Dart and Kotlin.</p>
+  <nav><a href="#products">Products</a><a href="#open">Open source</a><a href="#forks">Forks &amp; learning</a><a href="https://github.com/ardhynata">GitHub</a></nav>
+</header>
+
+<main>
+<h2 id="products">Products</h2>
+<p class="sub">Built with Hexago. Source for these is private except Archiest; screenshots are from local runs.</p>
+<div class="grid" id="products-grid">
+
+<article class="card" data-shots="img/archiest-editor.jpg,img/archiest-admin.jpg">
+  <div class="shot"><img src="img/archiest-editor.jpg" alt="Archiest blueprint editor with four rooms placed and a cost estimate" loading="lazy"></div>
+  <div class="thumbs"></div>
+  <div class="body">
+    <h3>Archiest</h3>
+    <p>Blueprint canvas for house design: place rooms, get a live structural and budget estimate in rupiah or dollars. Admin console edits the cost formulas and rates.</p>
+    <div class="links"><a href="https://github.com/ardhynata/archiest-for-bantu-bangun">Source on GitHub</a></div>
+    <div class="tags"><span class="tag">Go</span><span class="tag">PostgreSQL</span><span class="tag">HTMX</span><span class="tag">Canvas</span></div>
+  </div>
+</article>
+
+<article class="card" data-shots="img/amoris-dashboard.jpg,img/amoris-login.jpg">
+  <div class="shot"><img src="img/amoris-dashboard.jpg" alt="Amoris clinic dashboard with identity, clinical, finance and ops sections" loading="lazy"></div>
+  <div class="thumbs"></div>
+  <div class="body">
+    <h3>Amoris</h3>
+    <p>Multi-service clinic platform: clinical records, billing, insurance, accounting, inventory and payroll as three Go services behind one gateway.</p>
+    <div class="priv">Private repository</div>
+    <div class="tags"><span class="tag">Go</span><span class="tag">PostgreSQL</span><span class="tag">gRPC</span><span class="tag">NATS</span></div>
+  </div>
+</article>
+
+<article class="card" data-shots="img/inxpired-home.jpg,img/inxpired-services.jpg,img/inxpired-work.jpg">
+  <div class="shot"><img src="img/inxpired-home.jpg" alt="Inxpired company site home page" loading="lazy"></div>
+  <div class="thumbs"></div>
+  <div class="body">
+    <h3>Inxpired site</h3>
+    <p>Company-profile site for an IT consultancy and product studio: services, case studies, team, blog, and a gated admin studio with a markdown editor.</p>
+    <div class="priv">Private repository</div>
+    <div class="tags"><span class="tag">Go</span><span class="tag">MongoDB</span><span class="tag">MinIO</span><span class="tag">HTMX</span></div>
+  </div>
+</article>
+
+<article class="card" data-shots="img/chromatales-gallery.jpg,img/chromatales-home.jpg">
+  <div class="shot"><img src="img/chromatales-gallery.jpg" alt="Chromatales gallery of surface patterns" loading="lazy"></div>
+  <div class="thumbs"></div>
+  <div class="body">
+    <h3>Chromatales</h3>
+    <p>Website and operations platform for a surface-pattern designer: public gallery and shop, an admin studio, and a REST API with image uploads to S3-compatible storage.</p>
+    <div class="priv">Private repository</div>
+    <div class="tags"><span class="tag">Go</span><span class="tag">MySQL</span><span class="tag">MinIO</span><span class="tag">REST</span></div>
+  </div>
+</article>
+
+<article class="card" data-shots="img/eyesonme-home.jpg,img/eyesonme-admin.jpg">
+  <div class="shot"><img src="img/eyesonme-home.jpg" alt="Eyes On Me jewelry storefront home page" loading="lazy"></div>
+  <div class="thumbs"></div>
+  <div class="body">
+    <h3>Eyes On Me</h3>
+    <p>Storefront and catalog admin for a handcrafted jewelry studio: products, categories and uploaded photos.</p>
+    <div class="priv">Private repository</div>
+    <div class="tags"><span class="tag">Go</span><span class="tag">MySQL</span><span class="tag">MinIO</span><span class="tag">HTMX</span></div>
+  </div>
+</article>
+
+<article class="card">
+  <div class="shot"><div class="noshot">hexago</div></div>
+  <div class="body">
+    <h3>Hexago</h3>
+    <p>The codegen substrate behind the products above: describe a service in YAML and it generates the hexagonal-architecture Go code, migrations, templates and tests.</p>
+    <div class="priv">Private repository</div>
+    <div class="tags"><span class="tag">Go</span><span class="tag">Code generation</span></div>
+  </div>
+</article>
+
+</div>
+
+<h2 id="open">Open source</h2>
+<p class="sub">Public repositories.</p>
+<div class="grid">
+<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/archiest-for-bantu-bangun">archiest-for-bantu-bangun</a></h3><p>Public source of Archiest, the house-design canvas and cost estimator shown above.</p><div class="tags"><span class="tag">HTML</span><span class="tag">Go</span></div></div></article>
+<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/EmotionDetection">EmotionDetection</a></h3><p>Emotion detection experiment.</p><div class="tags"><span class="tag">HTML</span></div></div></article>
+<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/Fall-Detection-Telegram-Bot">Fall-Detection-Telegram-Bot</a></h3><p>Fall detection using MediaPipe pose estimation, with Telegram notifications.</p><div class="tags"><span class="tag">Python</span><span class="tag">MediaPipe</span><span class="tag">Telegram API</span></div></div></article>
+<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/Hepatitis-Detection-Proto">Hepatitis-Detection-Proto</a></h3><p>Prototype for hepatitis detection.</p><div class="tags"><span class="tag">Python</span></div></div></article>
+<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/AutismAR">AutismAR</a></h3><p>Augmented-reality project around autism support.</p><div class="tags"><span class="tag">Python</span></div></div></article>
+<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/AOCInformationSystem">AOCInformationSystem</a></h3><p>Android app for monitoring employees at PT Adyatama Optima Climajaya.</p><div class="tags"><span class="tag">Dart</span><span class="tag">Flutter</span></div></div></article>
+<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/MinioTest">MinioTest</a></h3><p>Small Go app testing MinIO object storage.</p><div class="tags"><span class="tag">Go</span><span class="tag">MinIO</span></div></div></article>
+</div>
+
+<h2 id="forks">Forks &amp; learning</h2>
+<p class="sub">Public forks and training repositories, kept for reference.</p>
+<div class="grid">
+<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/building-microservices-youtube">building-microservices-youtube</a></h3><p>Fork: code for a Go microservices video series.</p><div class="tags"><span class="tag">Go</span></div></div></article>
+<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/learn-kotlin">learn-kotlin</a></h3><p>Fork: code from a Learn Kotlin video series.</p><div class="tags"><span class="tag">Kotlin</span></div></div></article>
+<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/MongoDBRealm">MongoDBRealm</a></h3><p>Fork: MongoDB Realm tutorial for Android.</p><div class="tags"><span class="tag">Kotlin</span></div></div></article>
+<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/JWTAuthKtorAndroid">JWTAuthKtorAndroid</a></h3><p>Fork: JWT authentication with Ktor and Android.</p><div class="tags"><span class="tag">Kotlin</span></div></div></article>
+<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/ConsequencyAndMonitoring">ConsequencyAndMonitoring</a></h3><p>Fork: PHP monitoring app.</p><div class="tags"><span class="tag">PHP</span></div></div></article>
+<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/claw-code">claw-code</a></h3><p>Fork: Rust rewrite of an agent harness.</p><div class="tags"><span class="tag">Rust</span></div></div></article>
+<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/github-slideshow">github-slideshow</a></h3><p>GitHub Skills training repository.</p><div class="tags"><span class="tag">Ruby</span></div></div></article>
+</div>
+</main>
+
+<footer>© <span id="y"></span> ardhynata · <a href="https://github.com/ardhynata">github.com/ardhynata</a></footer>
+</div>
+<script>
+document.getElementById('y').textContent=new Date().getFullYear();
+document.querySelectorAll('.card[data-shots]').forEach(function(c){
+  var shots=c.dataset.shots.split(','),img=c.querySelector('.shot img'),t=c.querySelector('.thumbs');
+  if(shots.length<2){t.remove();return}
+  shots.forEach(function(s,i){
+    var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Screenshot '+(i+1));
+    b.setAttribute('aria-current',i===0);b.innerHTML='<img src="'+s+'" alt="" loading="lazy">';
+    b.onclick=function(){img.src=s;t.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-current',x===b)})};
+    t.appendChild(b)});
+});
+</script>
+</body>
+</html>
