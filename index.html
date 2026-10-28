@@ -4,157 +4,256 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ardhynata · Portfolio</title>
-<meta name="description" content="Portfolio of ardhynata: Go products built on Hexago, plus Python, Dart and Kotlin projects.">
+<meta name="description" content="Portfolio of ardhynata: Go products built on the Hexago hexagonal-architecture substrate, plus Python, Dart and Kotlin projects, laid out as a honeycomb.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Cpolygon points=%2750,4 92,27 92,73 50,96 8,73 8,27%27 fill=%27%233346e0%27/%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2712%27 fill=%27%23f4b63a%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Unbounded:wght@500;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fafaf9;--fg:#1c1917;--muted:#6b6560;--card:#fff;--line:#e7e5e4;--accent:#0f6b5c;--chip:#f0efed}
-@media (prefers-color-scheme:dark){:root{--bg:#121110;--fg:#f2efec;--muted:#a09a94;--card:#1b1a18;--line:#2c2a27;--accent:#4cc3aa;--chip:#26241f}}
+:root{
+  --paper:#eef0f7; --ink:#161a33; --muted:#555b7e; --blue:#3346e0; --gold:#f4b63a; --mint:#8fd9c0;
+  --link:#2a3bc4; --line:#cfd3e6; --panel:#ffffff;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --text:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#12152b;--ink:#e9ecf8;--muted:#a3a9cc;--blue:#5568ff;--link:#9aa7ff;--line:#2b3052;--panel:#1a1e3a}
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-a{color:var(--accent)}
-.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
-header{padding:64px 0 32px}
-h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.1;margin:0 0 12px;letter-spacing:-.02em}
-header p{max-width:60ch;color:var(--muted);margin:0 0 16px}
-nav a{margin-right:16px;font-size:.95rem}
-h2{font-size:1.4rem;margin:48px 0 4px}
-.sub{color:var(--muted);margin:0 0 20px;font-size:.95rem}
-.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
-.card .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
-.card h3{margin:0;font-size:1.1rem}
-.card p{margin:0;color:var(--muted);font-size:.95rem}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
-.tag{background:var(--chip);border-radius:999px;padding:2px 10px;font-size:.78rem;color:var(--muted)}
-.links{font-size:.9rem}
-.shot{background:var(--chip);aspect-ratio:10/7;position:relative}
-.shot img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
-.thumbs{display:flex;gap:6px;padding:8px 16px 0}
-.thumbs button{border:1px solid var(--line);background:var(--chip);border-radius:6px;padding:0;width:56px;height:38px;overflow:hidden;cursor:pointer;opacity:.6}
-.thumbs button[aria-current=true]{opacity:1;outline:2px solid var(--accent)}
-.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
-.noshot{display:flex;align-items:center;justify-content:center;height:100%;font:600 1.6rem ui-monospace,monospace;color:var(--muted)}
-.priv{font-size:.78rem;color:var(--muted)}
-footer{margin:64px 0 40px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line);padding-top:20px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.6 var(--text)}
+a{color:var(--link)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:24px;align-items:center;padding:48px 0 24px;min-height:min(68vh,540px)}
+h1{font:800 min(3.1rem,12.5cqw)/.95 var(--display);letter-spacing:-.04em;margin:0 0 20px;overflow-wrap:anywhere}
+.hero>div:first-child{container-type:inline-size}
+.hero p{max-width:34ch;margin:0 0 12px;font-size:1.1rem}
+.hero .note{color:var(--muted);font-size:.95rem}
+.hero a.skip{display:inline-block;margin-top:8px}
+
+/* honeycomb */
+.comb{position:relative;width:100%}
+.cell{position:absolute;transition:transform .18s ease,filter .18s ease;z-index:1}
+.cell:hover{transform:translateY(-5px) scale(1.04);z-index:2}
+.cell:has(:focus-visible){z-index:2;filter:drop-shadow(3px 0 0 var(--gold)) drop-shadow(-3px 0 0 var(--gold)) drop-shadow(0 3px 0 var(--gold)) drop-shadow(0 -3px 0 var(--gold))}
+.hex{--clip:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  position:relative;display:block;width:100%;height:100%;padding:0;border:0;margin:0;cursor:pointer;color:inherit;font:inherit;text-align:center;
+  clip-path:var(--clip);background:var(--blue);overflow:hidden;
+  animation:pop .5s cubic-bezier(.2,.9,.3,1.2) both;animation-delay:calc(var(--i)*55ms)}
+@keyframes pop{from{transform:scale(.15);opacity:0}to{transform:scale(1);opacity:1}}
+.hex img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left;transition:transform .4s ease}
+.cell:hover .hex img{transform:scale(1.06)}
+.hex .tag{position:absolute;left:0;right:0;bottom:0;padding:34px 14% 16%;background:linear-gradient(transparent,rgba(12,14,36,.88));color:#fff;
+  font:500 .72rem/1.2 var(--display);letter-spacing:-.01em}
+.hex .edge{position:absolute;inset:0;width:100%;height:100%;color:var(--blue);pointer-events:none}
+.hex--core{background:var(--blue);color:#fff}
+.hex--core svg{position:absolute;inset:8%;width:84%;height:84%}
+.hex--core .tag{background:none}
+.hex--repo{background:var(--fill);color:var(--on)}
+.hex--repo.fork{background:var(--ink);color:var(--ink)}
+.hex--repo.fork::before{content:"";position:absolute;inset:2.5px;clip-path:var(--clip);background:var(--paper)}
+.hex--repo .inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0 20%}
+.hex--repo .nm{font:600 clamp(10px,calc(var(--w,172px)*.075),13px)/1.2 var(--text);overflow-wrap:anywhere;hyphens:auto}
+.hex--repo .lg{font:500 .7rem/1 var(--text);opacity:.85}
+
+/* sections */
+section{padding:48px 0 16px}
+h2{font:800 clamp(1.4rem,3.5vw,2rem)/1.1 var(--display);letter-spacing:-.03em;margin:0 0 8px}
+.lede{max-width:56ch;color:var(--muted);margin:0 0 24px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 0 24px;padding:0;list-style:none;font-size:.88rem;color:var(--muted)}
+.legend li{display:flex;align-items:center;gap:7px}
+.sw{width:16px;height:18px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:var(--c)}
+.sw.hollow{background:var(--ink);position:relative}
+.sw.hollow::after{content:"";position:absolute;inset:2px;background:var(--paper);clip-path:inherit}
+footer{margin:56px 0 40px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+
+/* detail dialog */
+dialog{width:min(860px,calc(100vw - 24px));max-height:calc(100vh - 24px);padding:0;border:2px solid var(--blue);border-radius:6px;background:var(--panel);color:var(--ink);overflow:auto}
+dialog::backdrop{background:rgba(10,12,30,.6)}
+dialog[open]{animation:rise .22s ease both}
+@keyframes rise{from{transform:translateY(14px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+.d-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:20px 20px 0}
+.d-head h3{font:800 1.5rem/1.1 var(--display);letter-spacing:-.03em;margin:0}
+.d-close{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:6px;padding:6px 12px;font:500 .9rem var(--text);cursor:pointer}
+.d-close:hover{border-color:var(--blue)}
+.d-media{margin:16px 20px 0;border:1px solid var(--line);border-radius:4px;background:var(--paper);aspect-ratio:10/7;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.d-media img{width:100%;height:100%;object-fit:contain;display:block}
+.d-media svg{width:38%;height:auto}
+.d-thumbs{display:flex;gap:8px;padding:10px 20px 0}
+.d-thumbs button{width:72px;height:50px;padding:0;border:2px solid var(--line);border-radius:4px;overflow:hidden;background:var(--paper);cursor:pointer}
+.d-thumbs button[aria-current=true]{border-color:var(--blue)}
+.d-thumbs img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
+.d-body{padding:16px 20px 22px}
+.d-body p{margin:0 0 12px;max-width:62ch}
+.d-meta{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px;padding:0;list-style:none}
+.d-meta li{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:1px 10px;font-size:.82rem;color:var(--muted)}
+.d-link{display:inline-block;padding:8px 14px;background:var(--blue);color:#fff;border-radius:6px;text-decoration:none;font-weight:500}
+.d-link:hover{filter:brightness(1.1)}
+.d-private{color:var(--muted);font-size:.92rem}
+
+/* no-JS fallback and small screens */
+.comb.nojs{display:flex;flex-wrap:wrap;gap:10px}
+.comb.nojs .cell{position:static;width:160px;height:185px}
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;min-height:0;padding-top:32px}
+}
+@media (prefers-reduced-motion:reduce){
+  .hex{animation:none}
+  .cell,.hex img{transition:none}
+  dialog[open]{animation:none}
+  html{scroll-behavior:auto}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header>
-  <h1>ardhynata</h1>
-  <p>Software projects: Go products built on the Hexago hexagonal-architecture substrate, plus experiments in Python, Dart and Kotlin.</p>
-  <nav><a href="#products">Products</a><a href="#open">Open source</a><a href="#forks">Forks &amp; learning</a><a href="https://github.com/ardhynata">GitHub</a></nav>
-</header>
-
-<main>
-<h2 id="products">Products</h2>
-<p class="sub">Built with Hexago. Source for these is private except Archiest; screenshots are from local runs.</p>
-<div class="grid" id="products-grid">
-
-<article class="card" data-shots="img/archiest-editor.jpg,img/archiest-admin.jpg">
-  <div class="shot"><img src="img/archiest-editor.jpg" alt="Archiest blueprint editor with four rooms placed and a cost estimate" loading="lazy"></div>
-  <div class="thumbs"></div>
-  <div class="body">
-    <h3>Archiest</h3>
-    <p>Blueprint canvas for house design: place rooms, get a live structural and budget estimate in rupiah or dollars. Admin console edits the cost formulas and rates.</p>
-    <div class="links"><a href="https://github.com/ardhynata/archiest-for-bantu-bangun">Source on GitHub</a></div>
-    <div class="tags"><span class="tag">Go</span><span class="tag">PostgreSQL</span><span class="tag">HTMX</span><span class="tag">Canvas</span></div>
+  <div class="hero">
+    <div>
+      <h1>ardhynata</h1>
+      <p>I build services as a small core with adapters around it. Click a tile to see what I shipped.</p>
+      <p class="note">Five products plus the Hexago generator behind them. Their code is private, so the screenshots come from local runs.</p>
+      <a class="skip" href="#github">Jump to every repository on GitHub</a>
+    </div>
+    <div class="comb nojs" id="products" aria-label="Products"></div>
   </div>
-</article>
 
-<article class="card" data-shots="img/amoris-dashboard.jpg,img/amoris-login.jpg">
-  <div class="shot"><img src="img/amoris-dashboard.jpg" alt="Amoris clinic dashboard with identity, clinical, finance and ops sections" loading="lazy"></div>
-  <div class="thumbs"></div>
-  <div class="body">
-    <h3>Amoris</h3>
-    <p>Multi-service clinic platform: clinical records, billing, insurance, accounting, inventory and payroll as three Go services behind one gateway.</p>
-    <div class="priv">Private repository</div>
-    <div class="tags"><span class="tag">Go</span><span class="tag">PostgreSQL</span><span class="tag">gRPC</span><span class="tag">NATS</span></div>
-  </div>
-</article>
+  <section id="github">
+    <h2>On GitHub</h2>
+    <p class="lede">Every public repository, original work first. Each tile opens a short description and the link.</p>
+    <ul class="legend" id="legend"></ul>
+    <div class="comb nojs" id="repos" aria-label="Public repositories"></div>
+  </section>
 
-<article class="card" data-shots="img/inxpired-home.jpg,img/inxpired-services.jpg,img/inxpired-work.jpg">
-  <div class="shot"><img src="img/inxpired-home.jpg" alt="Inxpired company site home page" loading="lazy"></div>
-  <div class="thumbs"></div>
-  <div class="body">
-    <h3>Inxpired site</h3>
-    <p>Company-profile site for an IT consultancy and product studio: services, case studies, team, blog, and a gated admin studio with a markdown editor.</p>
-    <div class="priv">Private repository</div>
-    <div class="tags"><span class="tag">Go</span><span class="tag">MongoDB</span><span class="tag">MinIO</span><span class="tag">HTMX</span></div>
-  </div>
-</article>
-
-<article class="card" data-shots="img/chromatales-gallery.jpg,img/chromatales-home.jpg">
-  <div class="shot"><img src="img/chromatales-gallery.jpg" alt="Chromatales gallery of surface patterns" loading="lazy"></div>
-  <div class="thumbs"></div>
-  <div class="body">
-    <h3>Chromatales</h3>
-    <p>Website and operations platform for a surface-pattern designer: public gallery and shop, an admin studio, and a REST API with image uploads to S3-compatible storage.</p>
-    <div class="priv">Private repository</div>
-    <div class="tags"><span class="tag">Go</span><span class="tag">MySQL</span><span class="tag">MinIO</span><span class="tag">REST</span></div>
-  </div>
-</article>
-
-<article class="card" data-shots="img/eyesonme-home.jpg,img/eyesonme-admin.jpg">
-  <div class="shot"><img src="img/eyesonme-home.jpg" alt="Eyes On Me jewelry storefront home page" loading="lazy"></div>
-  <div class="thumbs"></div>
-  <div class="body">
-    <h3>Eyes On Me</h3>
-    <p>Storefront and catalog admin for a handcrafted jewelry studio: products, categories and uploaded photos.</p>
-    <div class="priv">Private repository</div>
-    <div class="tags"><span class="tag">Go</span><span class="tag">MySQL</span><span class="tag">MinIO</span><span class="tag">HTMX</span></div>
-  </div>
-</article>
-
-<article class="card">
-  <div class="shot"><div class="noshot">hexago</div></div>
-  <div class="body">
-    <h3>Hexago</h3>
-    <p>The codegen substrate behind the products above: describe a service in YAML and it generates the hexagonal-architecture Go code, migrations, templates and tests.</p>
-    <div class="priv">Private repository</div>
-    <div class="tags"><span class="tag">Go</span><span class="tag">Code generation</span></div>
-  </div>
-</article>
-
+  <footer>© <span id="y"></span> ardhynata · <a href="https://github.com/ardhynata">github.com/ardhynata</a></footer>
 </div>
 
-<h2 id="open">Open source</h2>
-<p class="sub">Public repositories.</p>
-<div class="grid">
-<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/archiest-for-bantu-bangun">archiest-for-bantu-bangun</a></h3><p>Public source of Archiest, the house-design canvas and cost estimator shown above.</p><div class="tags"><span class="tag">HTML</span><span class="tag">Go</span></div></div></article>
-<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/EmotionDetection">EmotionDetection</a></h3><p>Emotion detection experiment.</p><div class="tags"><span class="tag">HTML</span></div></div></article>
-<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/Fall-Detection-Telegram-Bot">Fall-Detection-Telegram-Bot</a></h3><p>Fall detection using MediaPipe pose estimation, with Telegram notifications.</p><div class="tags"><span class="tag">Python</span><span class="tag">MediaPipe</span><span class="tag">Telegram API</span></div></div></article>
-<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/Hepatitis-Detection-Proto">Hepatitis-Detection-Proto</a></h3><p>Prototype for hepatitis detection.</p><div class="tags"><span class="tag">Python</span></div></div></article>
-<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/AutismAR">AutismAR</a></h3><p>Augmented-reality project around autism support.</p><div class="tags"><span class="tag">Python</span></div></div></article>
-<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/AOCInformationSystem">AOCInformationSystem</a></h3><p>Android app for monitoring employees at PT Adyatama Optima Climajaya.</p><div class="tags"><span class="tag">Dart</span><span class="tag">Flutter</span></div></div></article>
-<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/MinioTest">MinioTest</a></h3><p>Small Go app testing MinIO object storage.</p><div class="tags"><span class="tag">Go</span><span class="tag">MinIO</span></div></div></article>
-</div>
+<dialog id="dlg" aria-labelledby="d-title">
+  <div class="d-head"><h3 id="d-title"></h3><button class="d-close" type="button" id="d-close">Close</button></div>
+  <div class="d-media" id="d-media"></div>
+  <div class="d-thumbs" id="d-thumbs"></div>
+  <div class="d-body"><p id="d-text"></p><ul class="d-meta" id="d-meta"></ul><div id="d-action"></div></div>
+</dialog>
 
-<h2 id="forks">Forks &amp; learning</h2>
-<p class="sub">Public forks and training repositories, kept for reference.</p>
-<div class="grid">
-<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/building-microservices-youtube">building-microservices-youtube</a></h3><p>Fork: code for a Go microservices video series.</p><div class="tags"><span class="tag">Go</span></div></div></article>
-<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/learn-kotlin">learn-kotlin</a></h3><p>Fork: code from a Learn Kotlin video series.</p><div class="tags"><span class="tag">Kotlin</span></div></div></article>
-<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/MongoDBRealm">MongoDBRealm</a></h3><p>Fork: MongoDB Realm tutorial for Android.</p><div class="tags"><span class="tag">Kotlin</span></div></div></article>
-<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/JWTAuthKtorAndroid">JWTAuthKtorAndroid</a></h3><p>Fork: JWT authentication with Ktor and Android.</p><div class="tags"><span class="tag">Kotlin</span></div></div></article>
-<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/ConsequencyAndMonitoring">ConsequencyAndMonitoring</a></h3><p>Fork: PHP monitoring app.</p><div class="tags"><span class="tag">PHP</span></div></div></article>
-<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/claw-code">claw-code</a></h3><p>Fork: Rust rewrite of an agent harness.</p><div class="tags"><span class="tag">Rust</span></div></div></article>
-<article class="card"><div class="body"><h3><a href="https://github.com/ardhynata/github-slideshow">github-slideshow</a></h3><p>GitHub Skills training repository.</p><div class="tags"><span class="tag">Ruby</span></div></div></article>
-</div>
-</main>
-
-<footer>© <span id="y"></span> ardhynata · <a href="https://github.com/ardhynata">github.com/ardhynata</a></footer>
-</div>
 <script>
+(function(){
+var CORE_SVG='<svg viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"><polygon points="50,6 88,28 88,72 50,94 12,72 12,28" opacity=".45"/><polygon points="50,24 72,37 72,63 50,76 28,63 28,37"/></g><g fill="#f4b63a"><circle cx="50" cy="6" r="4.2"/><circle cx="88" cy="28" r="4.2"/><circle cx="88" cy="72" r="4.2"/><circle cx="50" cy="94" r="4.2"/><circle cx="12" cy="72" r="4.2"/><circle cx="12" cy="28" r="4.2"/></g><circle cx="50" cy="50" r="5" fill="#fff"/></svg>';
+
+var EDGE='<svg class="edge" viewBox="0 0 100 115.47" preserveAspectRatio="none" aria-hidden="true"><polygon points="50,0 100,28.87 100,86.6 50,115.47 0,86.6 0,28.87" fill="none" stroke="currentColor" stroke-width="5" vector-effect="non-scaling-stroke"/></svg>';
+var products=[
+ {id:'hexago',name:'Hexago',core:true,shots:[],text:'The generator behind the other products. Describe a service in YAML and it writes the hexagonal-architecture Go code, migrations, templates and tests. The diagram shows the idea: a core in the middle and an adapter on each of six sides.',tags:['Go','Code generation'],priv:true},
+ {id:'archiest',name:'Archiest',shots:['img/archiest-editor.jpg','img/archiest-admin.jpg'],text:'A blueprint canvas for house design. Place rooms on a plot and get a live structural and budget estimate in rupiah or dollars. An admin console edits the cost formulas and rates.',tags:['Go','PostgreSQL','HTMX','Canvas'],url:'https://github.com/ardhynata/archiest-for-bantu-bangun',linkText:'Open the source on GitHub'},
+ {id:'amoris',name:'Amoris',shots:['img/amoris-dashboard.jpg','img/amoris-login.jpg'],text:'A multi-service clinic platform. Clinical records, billing, insurance, accounting, inventory and payroll run as three Go services behind one gateway.',tags:['Go','PostgreSQL','gRPC','NATS'],priv:true},
+ {id:'inxpired',name:'Inxpired site',shots:['img/inxpired-home.jpg','img/inxpired-services.jpg','img/inxpired-work.jpg'],text:'The company site for an IT consultancy and product studio: services, case studies, team and blog, with a gated admin studio and a markdown editor.',tags:['Go','MongoDB','MinIO','HTMX'],priv:true},
+ {id:'chromatales',name:'Chromatales',shots:['img/chromatales-gallery.jpg','img/chromatales-home.jpg'],text:'Website and operations platform for a surface-pattern designer. A public gallery and shop, an admin studio, and a REST API with image uploads to S3-compatible storage.',tags:['Go','MySQL','MinIO','REST'],priv:true},
+ {id:'eyesonme',name:'Eyes On Me',shots:['img/eyesonme-home.jpg','img/eyesonme-admin.jpg'],text:'Storefront and catalog admin for a handcrafted jewelry studio: products, categories and uploaded photos.',tags:['Go','MySQL','MinIO','HTMX'],priv:true}
+];
+
+var L={Go:['#00add8','#04222b'],Python:['#3572a5','#fff'],Dart:['#00b4ab','#03211f'],Kotlin:['#a97bff','#1a0b3d'],HTML:['#e34c26','#fff'],PHP:['#777bb4','#fff'],Rust:['#dea584','#2b1608'],Ruby:['#cc342d','#fff']};
+var repos=[
+ {name:'archiest-for-bantu-bangun',lang:'HTML',text:'Public source of Archiest, the house-design canvas and cost estimator.',url:'https://github.com/ardhynata/archiest-for-bantu-bangun'},
+ {name:'EmotionDetection',lang:'HTML',text:'Emotion detection experiment.',url:'https://github.com/ardhynata/EmotionDetection'},
+ {name:'Fall-Detection-Telegram-Bot',lang:'Python',text:'Fall detection using MediaPipe pose estimation, with Telegram notifications.',url:'https://github.com/ardhynata/Fall-Detection-Telegram-Bot'},
+ {name:'Hepatitis-Detection-Proto',lang:'Python',text:'Prototype for hepatitis detection.',url:'https://github.com/ardhynata/Hepatitis-Detection-Proto'},
+ {name:'AutismAR',lang:'Python',text:'Augmented-reality project around autism support.',url:'https://github.com/ardhynata/AutismAR'},
+ {name:'AOCInformationSystem',lang:'Dart',text:'Android app for monitoring employees at PT Adyatama Optima Climajaya.',url:'https://github.com/ardhynata/AOCInformationSystem'},
+ {name:'MinioTest',lang:'Go',text:'Small Go app testing MinIO object storage.',url:'https://github.com/ardhynata/MinioTest'},
+ {name:'building-microservices-youtube',lang:'Go',fork:1,text:'Fork of the code for a Go microservices video series.',url:'https://github.com/ardhynata/building-microservices-youtube'},
+ {name:'learn-kotlin',lang:'Kotlin',fork:1,text:'Fork of the code from a Learn Kotlin video series.',url:'https://github.com/ardhynata/learn-kotlin'},
+ {name:'MongoDBRealm',lang:'Kotlin',fork:1,text:'Fork of a MongoDB Realm tutorial for Android.',url:'https://github.com/ardhynata/MongoDBRealm'},
+ {name:'JWTAuthKtorAndroid',lang:'Kotlin',fork:1,text:'Fork of a JWT authentication example with Ktor and Android.',url:'https://github.com/ardhynata/JWTAuthKtorAndroid'},
+ {name:'ConsequencyAndMonitoring',lang:'PHP',fork:1,text:'Fork of a PHP monitoring app.',url:'https://github.com/ardhynata/ConsequencyAndMonitoring'},
+ {name:'claw-code',lang:'Rust',fork:1,text:'Fork of an agent-harness project being rewritten in Rust.',url:'https://github.com/ardhynata/claw-code'},
+ {name:'github-slideshow',lang:'Ruby',fork:0,text:'GitHub Skills training repository.',url:'https://github.com/ardhynata/github-slideshow'}
+];
+
+var R=0.8660254;
+function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e}
+function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function breakName(n){return esc(n).replace(/-/g,'-<wbr>').replace(/([a-z])([A-Z])/g,'$1<wbr>$2')}
+
+/* tiles */
+function productCell(p,i){
+  var cell=el('div','cell'),b=el('button','hex'+(p.core?' hex--core':''));
+  b.type='button';b.style.setProperty('--i',i);b.setAttribute('aria-label',p.name+', open details');
+  if(p.core){b.innerHTML=CORE_SVG+'<span class="tag">'+esc(p.name)+'</span>'}
+  else{b.innerHTML='<img src="'+p.shots[0]+'" alt="" loading="lazy"><span class="tag">'+esc(p.name)+'</span>'+EDGE}
+  b.onclick=function(){openDlg(p.id)};cell.appendChild(b);return cell;
+}
+function repoCell(r,i){
+  var c=L[r.lang]||['#888','#fff'],cell=el('div','cell'),b=el('button','hex hex--repo'+(r.fork!=null?' fork':''));
+  b.type='button';b.style.setProperty('--i',i);b.style.setProperty('--fill',c[0]);b.style.setProperty('--on',c[1]);
+  b.setAttribute('aria-label',r.name+', '+r.lang+(r.fork?', fork':'')+', open details');
+  var col=r.fork!=null?'var(--ink)':c[1];
+  b.innerHTML='<span class="inner" style="color:'+col+'"><span class="nm">'+breakName(r.name)+'</span><span class="lg">'+esc(r.lang)+'</span></span>';
+  b.onclick=function(){openDlg('repo:'+r.name)};cell.appendChild(b);return cell;
+}
+
+/* honeycomb layout: odd rows shifted by half a cell */
+function layout(comb,base){
+  var cells=[].slice.call(comb.children),W=comb.clientWidth;if(!W||!cells.length)return;
+  var cols=Math.max(2,Math.floor((W-base/2)/base)),w=Math.min(base,Math.floor(W/(cols+.5)));
+  var h=w/R,step=h*.75,gap=6,rows=Math.ceil(cells.length/cols);
+  cells.forEach(function(c,i){
+    var r=Math.floor(i/cols),k=i%cols;
+    c.style.width=(w-gap)+'px';c.style.height=((w-gap)/R)+'px';
+    c.style.left=(k*w+(r%2?w/2:0))+'px';c.style.top=(r*step)+'px';
+  });
+  comb.style.height=((rows-1)*step+h)+'px';comb.style.setProperty('--w',w+'px');
+}
+function build(id,cells,base){
+  var comb=document.getElementById(id);cells.forEach(function(c){comb.appendChild(c)});
+  comb.classList.remove('nojs');
+  var go=function(){layout(comb,base)};go();
+  if('ResizeObserver' in window)new ResizeObserver(go).observe(comb);else window.addEventListener('resize',go);
+}
+build('products',products.map(productCell),200);
+build('repos',repos.map(repoCell),172);
+
+/* legend */
+var seen={},lg=document.getElementById('legend');
+repos.forEach(function(r){seen[r.lang]=1});
+var f=el('li','','<span class="sw" style="--c:var(--blue)"></span>Original work');lg.appendChild(f);
+lg.appendChild(el('li','','<span class="sw hollow"></span>Fork or training repo'));
+Object.keys(seen).forEach(function(k){lg.appendChild(el('li','','<span class="sw" style="--c:'+L[k][0]+'"></span>'+esc(k)))});
+
+/* dialog */
+var dlg=document.getElementById('dlg'),dm=document.getElementById('d-media'),dt=document.getElementById('d-thumbs');
+function show(src,alt){dm.innerHTML='';var i=new Image();i.src=src;i.alt=alt;dm.appendChild(i)}
+function openDlg(id,noHash){
+  var p,isRepo=id.indexOf('repo:')===0;
+  if(isRepo){var r=repos.filter(function(x){return 'repo:'+x.name===id})[0];if(!r)return;
+    p={name:r.name,text:r.text,tags:[r.lang].concat(r.fork?['Fork']:r.fork===0?['Training']:[]),url:r.url,linkText:'Open on GitHub',shots:[]};}
+  else{p=products.filter(function(x){return x.id===id})[0];if(!p)return}
+  document.getElementById('d-title').textContent=p.name;
+  document.getElementById('d-text').textContent=p.text;
+  var m=document.getElementById('d-meta');m.innerHTML='';p.tags.forEach(function(t){var li=el('li');li.textContent=t;m.appendChild(li)});
+  var a=document.getElementById('d-action');a.innerHTML='';
+  if(p.url){var l=el('a','d-link');l.href=p.url;l.textContent=p.linkText;a.appendChild(l)}
+  else if(p.priv){var d=el('div','d-private');d.textContent='The repository is private.';a.appendChild(d)}
+  dt.innerHTML='';
+  var media=document.getElementById('d-media');
+  if(isRepo){media.style.display='none'}
+  else{media.style.display='';
+    if(p.core){dm.innerHTML=CORE_SVG.replace('stroke="#fff"','stroke="var(--blue)"').replace('<circle cx="50" cy="50" r="5" fill="#fff"/>','<circle cx="50" cy="50" r="5" fill="var(--blue)"/>')}
+    else{show(p.shots[0],p.name+' screenshot 1');
+      if(p.shots.length>1)p.shots.forEach(function(s,i){
+        var b=el('button');b.type='button';b.setAttribute('aria-label','Screenshot '+(i+1));b.setAttribute('aria-current',i===0);
+        b.innerHTML='<img src="'+s+'" alt="">';
+        b.onclick=function(){show(s,p.name+' screenshot '+(i+1));[].forEach.call(dt.children,function(x){x.setAttribute('aria-current',x===b)})};
+        dt.appendChild(b)})}}
+  if(!dlg.open)dlg.showModal();
+  if(!noHash&&!isRepo)history.replaceState(null,'','#'+id);
+}
+document.getElementById('d-close').onclick=function(){dlg.close()};
+dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+dlg.addEventListener('close',function(){if(location.hash)history.replaceState(null,'',location.pathname)});
+if(location.hash.length>1&&products.some(function(p){return '#'+p.id===location.hash}))openDlg(location.hash.slice(1),true);
+
 document.getElementById('y').textContent=new Date().getFullYear();
-document.querySelectorAll('.card[data-shots]').forEach(function(c){
-  var shots=c.dataset.shots.split(','),img=c.querySelector('.shot img'),t=c.querySelector('.thumbs');
-  if(shots.length<2){t.remove();return}
-  shots.forEach(function(s,i){
-    var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Screenshot '+(i+1));
-    b.setAttribute('aria-current',i===0);b.innerHTML='<img src="'+s+'" alt="" loading="lazy">';
-    b.onclick=function(){img.src=s;t.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-current',x===b)})};
-    t.appendChild(b)});
-});
+})();
 </script>
 </body>
 </html>
